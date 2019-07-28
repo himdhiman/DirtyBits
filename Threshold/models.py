@@ -16,7 +16,7 @@ class Problem(models.Model):
     description = models.TextField()
     image = models.ImageField()
     level = models.CharField(max_length = 10, choices = difficulty_level)
-    topic = model.CharField(max_length = 100, choices = part)
+    topic = models.CharField(max_length = 100, choices = part)
 
     def __str__(self):
         return self.name
