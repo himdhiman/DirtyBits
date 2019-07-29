@@ -17,10 +17,11 @@
                     <input name = "password", type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
                 </div>
                 {% if error %}
-                    <p>{{ error }}</p>
+                    <p style = "color: red">*{{ error }}</p>
                 {% endif %}
                 <!-- {{ form }} -->
-                <button type="submit" class="btn btn-primary", method = "POST">Submit</button>
+                <button type="submit" class="btn btn-primary", method = "POST">Login</button>
+                <a href = '/auth/signup'> <span style = "font-size:75%"> or Signup?</span></a>
             </form>
         </div>
     </div>
