@@ -20,18 +20,27 @@
                 </div>
                 <div class="form-group">
                     <label for="formGroupExampleInput">Username</label>
+                    {% if error1 %}
+                        <span style = "color: red" >*{{ error1 }}</span>
+                    {% endif %}
                     <input name = "username" type="text" class="form-control" id="formGroupExampleInput" placeholder="Username">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputEmail1">Email address</label>
+                    {% if error2 %}
+                        <span style = "color: red" >*{{ error2 }}</span>
+                    {% endif %}
                     <input name = "email" , type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
                 </div>
                 <div class="form-group">
                     <label for="exampleInputPassword1">Password</label>
+                    {% if error3 %}
+                        <span style = "color: red" >*{{ error3 }}</span>
+                    {% endif %}
                     <input name = "password", type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
                 </div>
                 {% if error %}
-                    <p>{{ error }}</p>
+                    <p style = "color: red" >*{{ error }}</p>
                 {% endif %}
                 <!-- {{ form }} -->
                 <button type="submit" class="btn btn-primary", method = "POST">Submit</button>
