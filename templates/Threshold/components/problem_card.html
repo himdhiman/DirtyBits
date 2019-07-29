@@ -1,0 +1,11 @@
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">{{ problem.name }}</h5>
+        <p class="card-text">
+            {% autoescape off %}
+        {{problem.description_html}}
+            {% endautoescape %}
+        </p>
+        <a href="{% url 'problem' contest_id = contest.id pk = problem.id %}" class = 'card-link'> Attempt </a>
+    </div>
+</div>

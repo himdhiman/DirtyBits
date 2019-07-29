@@ -49,3 +49,7 @@ def UserLogin(request):
         return render(request, 'auth/login.html', context)
     else:
         return render(request, 'auth/login.html')
+
+def Logout(request):
+    logout(request)
+    return render(request, 'index.html')

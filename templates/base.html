@@ -17,8 +17,14 @@
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
         <a class="nav-item nav-link active" href="index.html">Home <span class="sr-only">(current)</span></a>
-        <a class="nav-item nav-link" href="#">Contest</a>
-        <a class="nav-item nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+        <a class="nav-item nav-link" href="{% url 'contests' %}">Contest</a>
+
+        {% if request.user.is_authenticated %}
+          Hello, {{ request.user.first_name }}
+          <a class="nav-item nav-link" href="/auth/logout">Logout</a>
+        {% else %}
+        <a class="nav-item nav-link" href="/auth/login">Login</a>
+        {% endif %}
       </div>
     </div>
   </nav>

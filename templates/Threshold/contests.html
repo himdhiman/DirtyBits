@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="row">
+    {% for contest in contest_list %}
+    <div class="col-4">
+        {% include 'Threshold/components/contest_card.html' %}
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

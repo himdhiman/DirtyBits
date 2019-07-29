@@ -5,5 +5,8 @@ from django.contrib import admin
 from Threshold import models
 
 admin.site.register([
-    models.Problem
+    models.Problem,
+    models.Contest,
+    models.StudentContest,
+    models.Submission
 ])

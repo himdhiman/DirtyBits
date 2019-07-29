@@ -1,0 +1,8 @@
+<div class="card"">
+    <div class="card-body">
+      <h5 class="card-title">{{contest.name}}</h5>
+      <h6 class="card-subtitle mb-2 text-muted">{{contest.start_date}}</h6>
+      <p class="card-text">{{contest.description}}</p>
+      <a href="{% url 'contest' contest.id %}" class="card-link">Enter Contest</a>
+    </div>
+</div>
