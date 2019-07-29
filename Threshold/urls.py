@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from Threshold import views
 
 urlpatterns = [
-    path('', views.Index.as_view()),
+    path('', views.Index.as_view(), name = 'index'),
     #  path('problem/', include('views.problem'))
     path('contests', views.Contests.as_view(), name = 'contests'),
     path('contests/<int:pk>', login_required(views.Contest.as_view()), name = 'contest'),
