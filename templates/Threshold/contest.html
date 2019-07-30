@@ -2,20 +2,21 @@
 
 {% block content %}
 
-<div class="row">
+<div class="row pl-5">
     <h1>{{contest.name}}</h1>
 </div>
-<div class="row">
+<div class="row pl-5">
     <p>{{contest.start_date}} - {{contest.end_date}}</p>
+    <!-- <hr> -->
     <p>{{contest.description}}</p>
 </div>
-    <div class="row pt">
-        {% for problem in contest.problems.all %}
-        <div class="col-4 pt-4">
-            {% include 'Threshold/components/problem_card.html' %}
-        </div>
-        {% endfor %}
+<div class="row pt">
+    {% for problem in Contest.Problems.all %}
+    <div class="col-4 pt-4">
+        {% include 'Threshold/components/problem_card.html' %}
     </div>
+    {% endfor %}
+</div>
     
 
 {% endblock %}
