@@ -2,7 +2,6 @@ from django.db import models
 from django.contrib.auth.models import User
 import markdown2
 
-# Create your models here.
 
 class Problem(models.Model):
     difficulty_level = [
