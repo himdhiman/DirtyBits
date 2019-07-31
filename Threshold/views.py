@@ -27,4 +27,4 @@ class Problem(DetailView):
     template_name = 'Threshold/problem.html'
 
     def get_queryset(self):
-        return models.Contest.get(id = self.kwargs['contest_id']).problems
+        return models.Contest.objects.get(id = self.kwargs['contest_id']).Problems

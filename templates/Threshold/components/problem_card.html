@@ -6,6 +6,6 @@
         {{problem.description_html}}
             {% endautoescape %}
         </p>
-        <a href="{% url 'Problem' contest_id = contest.id pk = Problem.id %}" class = 'card-link'> Attempt </a>
+        <a href="{% url 'Problem' contest_id=contest.id pk=problem.id %}" class = 'card-link'> Attempt </a>
     </div>
 </div>

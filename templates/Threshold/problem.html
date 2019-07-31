@@ -1,12 +1,12 @@
-{% extends 'layouts/base.html' %}
+{% extends 'base.html' %}
 
 {% block content %}
 
-<div class="row">
+<div class="row pl-4">
     <h1>{{problem.name}}</h1>
 </div>
 
-<div class="row">
+<div class="row pl-4">
     <p>
         {% autoescape off %}
             {{problem.description_html}}
@@ -15,7 +15,7 @@
 </div>
 
 
-<div id="editor">function foo(items) {
+<div id="editor" style="size: 300px">function foo(items) {
         var x = "All this is syntax highlighted";
         return x;
     }</div>
