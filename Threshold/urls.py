@@ -8,6 +8,7 @@ urlpatterns = [
     #  path('problem/', include('views.problem'))
     path('contests', views.Contests.as_view(), name = 'contests'),
     path('contests/<int:pk>', login_required(views.Contest.as_view()), name = 'contest'),
-    path('contests/<int:contest_id>/problem/<int:pk>', login_required(views.Problem.as_view()), name = 'Problem')
+    path('contests/<int:contest_id>/problem/<int:pk>', login_required(views.Problem.as_view()), name = 'Problem'),
+    path('contests/<int:contest_id>/problem/<int:pk>/run', views.runCode, name='run')
 
 ]
