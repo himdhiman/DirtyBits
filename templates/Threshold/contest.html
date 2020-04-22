@@ -7,8 +7,9 @@
 </div>
 <div class="row pl-5">
     <p>{{contest.start_date}} - {{contest.end_date}}</p>
-    <!-- <hr> -->
+    <hr>
     <p>{{contest.description}}</p>
+    <hr>
 </div>
 <div class="row pt">
     {% for problem in contest.Problems.all %}

@@ -6,6 +6,7 @@ from django.http import JsonResponse, HttpResponseForbidden
 import requests
 from django.views.decorators.csrf import csrf_exempt
 import json
+from coderunner.coderunner import code
 
 
 # Create your views here.
@@ -47,13 +48,24 @@ def redirect_view(request):
     response = redirect('run')
     return response
 
-# class redirect_view(DetailView):
-#     # print("HELLO")
-#     # contest_id = models.Contest.objects.get(id = self.kwargs['contest_id']).Problems
-#     # response = redirect('run/', contest_id)
-#     # return response
-#     def redirect_view(self):
-#     # print("HELLO")
-#         contest_id = models.Contest.objects.get(id = self.kwargs['contest_id']).Problems
-#         response = redirect('run/')
-#         return response
+
+def RunCode(request):
+    SourceCode = request.POST.get('source')
+    Language = request.POST.get('lang')
+    if Language == "CPP":
+        Language = "C++"
+    r = code(SourceCode, Language, path = False)
+    r.run()
+    cstat = r.getStatus()
+    rstat = "Running"
+    time = r.getTime()
+    memory = r.getMemory()
+    out = r.getOutput()
+    data = {
+        'cstat' : cstat,
+        'rstat' : rstat,
+        'time' : time,
+        'memory' : memory,
+        'output' : out
+    }
+    return JsonResponse(data)

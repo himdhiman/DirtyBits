@@ -56,11 +56,11 @@ $(document).ready(function(){
 	//To Download the code in the editor
 	function download(content,lang){
 		var e = {
-			"C":"c","CPP":"cpp","CLOJURE":"clj","CSS":"css","CSHARP":"cs",
-			"GO":"go","HASKELL":"hs","JAVA":"java","JAVASCRIPT":"js",
-			"LISP":"scm","OBJECTIVEC":"m","PERL":"pl","PHP":"php",
-			"PYTHON":"py","RUBY":"rb","R":"r","RUST":"rs","SCALA":"scala",
-			"TEXT":"txt"
+			"C":"C","CPP":"C++","CLOJURE":"clj","CSS":"css","CSHARP":"C#",
+			"GO":"Go","HASKELL":"Haskell","JAVA":"Java","JAVASCRIPT":"JavaScript",
+			"LISP":"Common Lisp","OBJECTIVEC":"m","PERL":"pl","PHP":"PHP",
+			"PYTHON":"Python3","RUBY":"Ruby","R":"r","RUST":"Rust","SCALA":"scala",
+			"TEXT":"Plain Text"
 		};
 		var element = document.createElement('a');
 		element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(content));
@@ -104,7 +104,7 @@ $(document).ready(function(){
 
 		// AJAX request to Django for running code
 		$.ajax({
-			url: "run/",
+			url: "http://127.0.0.1:8000/run/",
 			type: "POST",
 			data: run_data,
 			dataType: "json",
@@ -118,19 +118,24 @@ $(document).ready(function(){
 				$(".outputbox").show();
 				$("#runcode").prop('disabled', false);
 
-				var cstat = response.compile_status;
-				var rstat = response.run_status.status;
-				if(cstat == "OK"){
+				var cstat = response.cstat;
+				var rstat = response.cstat;
+				var time_used = response.time;
+				var memory_used = response.memory;
+				var code_output = response.output;
+				console.log(response);
+				if(cstat == "Accepted"){
 
-					$(".compilestat").children(".value").html(response.compile_status);
-					$(".runstat").children(".value").html(response.run_status.status);
-					$(".time").children(".value").html(response.run_status.time_used);
-					$(".memory").children(".value").html(response.run_status.memory_used);
+					$(".compilestat").children(".value").html(cstat);
+					$(".runstat").children(".value").html(rstat);
+					$(".time").children(".value").html(time_used);
+					$(".memory").children(".value").html(memory_used);
+					$(".value1").html(code_output);
 
 					if(rstat == "AC"){
 						$(".outputerror").hide();
 						$(".io-show").show();
-						$(".outputo").html(response.run_status.output_html).css("color", "#000");;
+						$(".outputo").html(rstat).css("color", "#000");;
 						if($("#user-input").prop('checked') == true)
 							$(".outputi").html(input_given).css("color", "#000");
 						else
@@ -145,17 +150,17 @@ $(document).ready(function(){
 							$(".outputi").html("Standard input is empty").css("color", "#a6a6a6");
 						$(".outputerror").show();
  
-						if(rstat == "MLE"){
-							$(".errorkey").html("Memory Error");
-							$(".errormessage").html("Memory limit exceeded");
+						if(rstat == "Compilation Error"){
+							$(".errorkey").html("Compilation Error");
+							$(".errormessage").html("Compilation Error");
 						}
-						else if (rstat == "TLE"){
+						else if (rstat == "Time Limit Exceeded"){
 							$(".errorkey").html("Timeout Error");
 							$(".errormessage").html("Time limit exceeded.");
 						}
-						else {
+						else{
 							$(".errorkey").html("Runtime Error");
-							$(".errormessage").html(response.run_status.status_detail);
+							$(".errormessage").html(rstat);
 						}
 					}
 				}
@@ -173,7 +178,7 @@ $(document).ready(function(){
 
 					$(".outputerror").show();
 					$(".errorkey").html("Compile Error");
-					$(".errormessage").html(response.compile_status);
+					$(".errormessage").html(cstat);
 
 				}
 			},

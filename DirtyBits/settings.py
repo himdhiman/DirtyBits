@@ -34,7 +34,6 @@ ALLOWED_HOSTS = [
 
 INSTALLED_APPS = [
     'Threshold',
-    'api',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -79,11 +78,8 @@ WSGI_APPLICATION = 'DirtyBits.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'dirtybits',
-        'USER': 'postgres',
-        'PASSWORD': 'Himanshu9313@',
-        'HOST': 'localhost'
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
