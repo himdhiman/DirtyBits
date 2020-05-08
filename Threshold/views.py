@@ -52,20 +52,37 @@ def redirect_view(request):
 def RunCode(request):
     SourceCode = request.POST.get('source')
     Language = request.POST.get('lang')
-    if Language == "CPP":
-        Language = "C++"
-    r = code(SourceCode, Language, path = False)
-    r.run()
+    if(request.POST.get('input') != ''):
+        input_data = request.POST.get('input')
+        r = code(SourceCode, Language, inp = input_data, path = False)
+        r.run()
+    else:
+        r = code(SourceCode, Language, path = False)
+        r.run()
     cstat = r.getStatus()
     rstat = "Running"
     time = r.getTime()
     memory = r.getMemory()
     out = r.getOutput()
-    data = {
+    if(cstat == "Accepted"):
+        data = {
         'cstat' : cstat,
         'rstat' : rstat,
         'time' : time,
         'memory' : memory,
         'output' : out
-    }
-    return JsonResponse(data)
+        }
+        return JsonResponse(data)
+
+    else:
+        err = r.getError()
+        data = {
+        'cstat' : cstat,
+        'rstat' : rstat,
+        'time' : time,
+        'memory' : memory,
+        'output' : out,
+        'error' : err
+        }
+        print(data)
+        return JsonResponse(data)

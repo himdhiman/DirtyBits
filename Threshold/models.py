@@ -16,6 +16,8 @@ class Problem(models.Model):
     name = models.CharField(max_length = 50)
     description = models.TextField()
     level = models.CharField(max_length = 10, choices = difficulty_level)
+    Input = models.TextField(max_length = 100)
+    Output = models.TextField(max_length = 100)
     # topic = models.CharField(max_length = 100, choices = part)
     
     #computed property

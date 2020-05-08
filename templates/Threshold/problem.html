@@ -14,6 +14,24 @@
     </p>
 </div>
 
+<div style="padding-left: 6%;">
+    <p>
+        <h3>Test Cases</h3>
+    </p><hr>
+    <p>
+        <h4>Input</h4>
+    </p><hr>
+    <pre>
+        {{ problem.Input }}
+    </pre><hr>
+    <p>
+        <h4>Output</h4>
+    </p><hr>
+    <pre>
+        {{ problem.Output }}
+    </pre><hr>
+</div>
+
 
 <div>
     <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}" />
@@ -23,25 +41,20 @@
             <div class="lang-choose">
                 <select class="form-control" name="lang" id="lang">
                     <option value="C">C (gcc 4.8.4)</option>
-                    <option value="CPP" selected>C++ (g++ 4.8.4)</option>
-                    <option value="CLOJURE">Clojure (clojure 1.1.0)</option>
-                    <option value="CSS">CSS</option>
-                    <option value="CSHARP">C# (mono 3.2.8)</option>
-                    <option value="GO">Go (go 1.4.2)</option>
-                    <option value="HASKELL">Haskell (ghc 7.4.1)</option>
-                    <option value="JAVA">Java (openjdk 1.7.0_09)</option>
-                    <option value="JAVASCRIPT">JavaScript (Rhino 1.7)</option>
-                    <option value="LISP">Lisp (csc 4.8.0.5)</option>
-                    <option value="OBJECTIVEC">Objective-C (clang 3.3)</option>
-                    <option value="PASCAL">Pascal (fpc 2.6.2)</option>
-                    <option value="PERL">Perl (perl 5.18.2)</option>
+                    <option value="C++">C++ (g++ 4.8.4)</option>
+                    <option value="C#">C# (mono 3.2.8)</option>
+                    <option value="Go">Go (go 1.4.2)</option>
+                    <option value="Haskell">Haskell (ghc 7.4.1)</option>
+                    <option value="Java">Java (openjdk 1.7.0_09)</option>
+                    <option value="JavaScript">JavaScript (Rhino 1.7)</option>
+                    <option value="Common Lisp">Lisp (csc 4.8.0.5)</option>
+                    <option value="Pascal">Pascal (fpc 2.6.2)</option>
                     <option value="PHP">PHP (php 5.5.9)</option>
-                    <option value="PYTHON">Python (python 2.7.6)</option>
-                    <option value="RUBY">Ruby (ruby 2.1.1)</option>
-                    <option value="R">R (RScript 3.0.2)</option>
-                    <option value="RUST">Rust (rustc 1.4.0)</option>
-                    <option value="SCALA">Scala (scalac 2.9.2)</option>
-                    <option value="TEXTFILE">Text</option>
+                    <option value="Python2">Python (python 2.7.6)</option>
+                    <option value="Python3" selected>Python (python 3)</option>
+                    <option value="Ruby">Ruby (ruby 2.1.1)</option>
+                    <option value="Rust">Rust (rustc 1.4.0)</option>
+                    <option value="Plain Text">Text</option>
                 </select>
 
             </div> 
@@ -54,10 +67,10 @@
                         <option value="Twilight">Twilight</option>
                     </select>
                 </div> 
-                <a class="" id="download">
+                <!-- <a class="" id="download">
                     download code
                     <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span>
-                </a>
+                </a> -->
             </div>
         </div>
         
@@ -67,7 +80,7 @@
         </div>
 
 
-        <div class="row">
+        <div class="row">{% csrf_token %}
             <div id="showres">
                 <div class="pull-left user-input-area">
                     <div class="checkbox">
@@ -88,10 +101,6 @@
                 <textarea id="custom-input" class="input-textarea" placeholder="Write inputs to program."></textarea>
             </div>
         </div> 
-        <div>
-            <h2>OUTPUT</h2>
-            <div class="value1"></div>
-        </div>
         <div class="outputbox">
 
             <div class="outputio">

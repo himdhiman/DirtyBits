@@ -7,31 +7,26 @@ $(document).ready(function(){
 	var language = {}
 
 	language['C'] = '#include <stdio.h>\n\nint main(void) \n{\n	printf("Hello World!\\n");\n	return 0;\n}\n';
-	language['CPP'] = '#include <iostream>\nusing namespace std;\n\nint main()\n{\n     cout << "Hello World!" << endl;\n     return 0;\n}\n';
-	language['CLOJURE'] = '(println "Hello World!")';
-	language['CSS'] = "p {\n font-size: 18px; \n}\n";
-	language['CSHARP'] = 'using System;\nusing System.Numerics;\nclass Test {\n	static void Main(string[] args)	{\n	   /*\n		* \n		Read input from stdin and provide input before running\n		var line1 = System.Console.ReadLine().Trim();\n		var N = Int32.Parse(line1);\n		for (var i = 0; i < N; i++) {\n		System.Console.WriteLine("hello world");\n		}\n		*/\n\n		System.Console.WriteLine("Hello World!\\n");\n	}\n}\n';
-	language['GO'] = 'package main\n\nimport "fmt"\n\nfunc main() {\n    fmt.Println("Hello World")\n}\n';
-	language['HASKELL'] = 'module Main\n where\n\nmain=putStrLn "Hello World!\\n"';
-	language['JAVA'] = 'class TestClass {\n    public static void main(String args[] ) throws Exception {\n        System.out.println("Hello World!");\n    }\n}\n';
-	language['JAVASCRIPT'] = "importPackage(java.io);\nimportPackage(java.lang);\n\nprint ('Hello World!\\n');\n";
-	language['LISP'] = '(display "Hello World!")\n';
-	language['OBJECTIVEC'] = '#import <Foundation/Foundation.h>\nint main(int argc, const char* argv[]){\n    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];\n    printf("Hello World");\n    [pool drain];\n    return 0;\n}\n';
-	language['PASCAL'] = "program Hello;\nbegin\n    writeln ('Hello World!')\nend.\n";
-	language['PERL'] = "use strict;\n=comment\n# Read input from stdin and provide input before running code\n# Echo input to output.\nwhile(my $fred = <STDIN>) {\n    print $fred;\n}\n=cut\nprint 'Hello World!'\n";
+	language['C++'] = '#include <iostream>\nusing namespace std;\n\nint main()\n{\n     cout << "Hello World!" << endl;\n     return 0;\n}\n';
+	language['C#'] = 'using System;\nusing System.Numerics;\nclass Test {\n	static void Main(string[] args)	{\n	   /*\n		* \n		Read input from stdin and provide input before running\n		var line1 = System.Console.ReadLine().Trim();\n		var N = Int32.Parse(line1);\n		for (var i = 0; i < N; i++) {\n		System.Console.WriteLine("hello world");\n		}\n		*/\n\n		System.Console.WriteLine("Hello World!\\n");\n	}\n}\n';
+	language['Go'] = 'package main\n\nimport "fmt"\n\nfunc main() {\n    fmt.Println("Hello World")\n}\n';
+	language['Haskell'] = 'module Main\n where\n\nmain=putStrLn "Hello World!\\n"';
+	language['Java'] = 'class TestClass {\n    public static void main(String args[] ) throws Exception {\n        System.out.println("Hello World!");\n    }\n}\n';
+	language['JavaScript'] = "importPackage(java.io);\nimportPackage(java.lang);\n\nprint ('Hello World!\\n');\n";
+	language['Common Lisp'] = '(display "Hello World!")\n';
+	language['Pascal'] = "program Hello;\nbegin\n    writeln ('Hello World!')\nend.\n";
 	language['PHP'] = '<?php\n\necho "Hello World!";\n\n?>\n';
-	language['PYTHON'] = "print 'Hello World!'\n";
-	language['RUBY'] = "print 'Hello World!'\n";
-	language['R'] = 'cat("Hello World")\n';
-	language['RUST'] ='fn main() {\n    println!("Hello World!");\n}\n';
-	language['SCALA'] = 'object HelloWorld {\n    def main(args: Array[String]) {\n        println("Hello, world!")\n    }\n}\n';
-	language['TEXT'] = 'Paste the output here\n';
+	language['Python2'] = "print 'Hello World!'\n";
+	language['Python3'] = "print('Hello World!')\n";
+	language['Ruby'] = "print 'Hello World!'\n";
+	language['Rust'] ='fn main() {\n    println!("Hello World!");\n}\n';
+	language['Plain Text'] = 'Paste the output here\n';
 
 	//------From Ace Documentation on inserting the editor------//
 	ace.require("ace/ext/language_tools");
 	var editor = ace.edit("editor");
 	var ongoing = false;
-	var selectedLang = "CPP";
+	var selectedLang = "Python3";
 	editor.setTheme("ace/theme/dawn");
 	editor.session.setMode("ace/mode/c_cpp");
 	editor.getSession().setTabSize(5);
@@ -54,28 +49,28 @@ $(document).ready(function(){
 	editor.session.getSelection().clearSelection();
 
 	//To Download the code in the editor
-	function download(content,lang){
-		var e = {
-			"C":"C","CPP":"C++","CLOJURE":"clj","CSS":"css","CSHARP":"C#",
-			"GO":"Go","HASKELL":"Haskell","JAVA":"Java","JAVASCRIPT":"JavaScript",
-			"LISP":"Common Lisp","OBJECTIVEC":"m","PERL":"pl","PHP":"PHP",
-			"PYTHON":"Python3","RUBY":"Ruby","R":"r","RUST":"Rust","SCALA":"scala",
-			"TEXT":"Plain Text"
-		};
-		var element = document.createElement('a');
-		element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(content));
-		element.setAttribute('download', "file." + e[lang]);
-		element.style.display = 'none';
-		document.body.appendChild(element);
-		element.click();
-		document.body.removeChild(element);
-	}
+	// function download(content,lang){
+	// 	var e = {
+	// 		"C":"c","CPP":"c++","C#":"cs",
+	// 		"Go":"go","Haskell":"haskell","Java":"jar","JavaScript":"js",
+	// 		"Common Lisp":"lisp","PHP":"php",
+	// 		"Python2": "py","Python3" : "py","RUBY":"ruby","RUST":"rust",
+	// 		"Plain Text":"txt"
+	// 	};
+	// 	var element = document.createElement('a');
+	// 	element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(content));
+	// 	element.setAttribute('download', "file." + e[lang]);
+	// 	element.style.display = 'none';
+	// 	document.body.appendChild(element);
+	// 	element.click();
+	// 	document.body.removeChild(element);
+	// }
 
-	$("#download").click(function(){
-		updateContent();
-		download(source_code, $("#lang").val());
+	// $("#download").click(function(){
+	// 	updateContent();
+	// 	download(source_code, $("#lang").val());
 
-	});
+	// });
 
 	//To get the current contents in the editor
 	function updateContent(){
@@ -102,7 +97,10 @@ $(document).ready(function(){
 			run_data.input = input_given;
 		}
 
+		console.log(run_data);
+
 		// AJAX request to Django for running code
+
 		$.ajax({
 			url: "http://127.0.0.1:8000/run/",
 			type: "POST",
@@ -110,7 +108,6 @@ $(document).ready(function(){
 			dataType: "json",
 			timeout: 1000000,
 			success: function(response){
-
 				ongoing = false;
 				$("html, body").delay(150).animate({
 						scrollTop: $('#showres').offset().top
@@ -123,19 +120,19 @@ $(document).ready(function(){
 				var time_used = response.time;
 				var memory_used = response.memory;
 				var code_output = response.output;
-				console.log(response);
+				var code_error = response.error;
+				console.log(response)
 				if(cstat == "Accepted"){
 
-					$(".compilestat").children(".value").html(cstat);
+					$(".compilestat").children(".value").html("Compiled");
 					$(".runstat").children(".value").html(rstat);
 					$(".time").children(".value").html(time_used);
 					$(".memory").children(".value").html(memory_used);
-					$(".value1").html(code_output);
 
-					if(rstat == "AC"){
+					if(rstat == "Accepted"){
 						$(".outputerror").hide();
 						$(".io-show").show();
-						$(".outputo").html(rstat).css("color", "#000");;
+						$(".outputo").html(code_output).css("color", "#000");;
 						if($("#user-input").prop('checked') == true)
 							$(".outputi").html(input_given).css("color", "#000");
 						else
@@ -178,7 +175,7 @@ $(document).ready(function(){
 
 					$(".outputerror").show();
 					$(".errorkey").html("Compile Error");
-					$(".errormessage").html(cstat);
+					$(".errormessage").html(cstat + '\n' + code_error);
 
 				}
 			},
